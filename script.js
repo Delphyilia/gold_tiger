@@ -1,5 +1,5 @@
-// MP3ファイル名のリスト
-const mp3Files = [
+// セリフ
+const tiger = [
     "お前の苦労をずっと見てたぞ.mp3",
     "本当によく頑張ったな.mp3",
     "ついに我慢が報われ莫大な富を得る.mp3",
@@ -15,8 +15,8 @@ const mp3Files = [
   // ボタンコンテナを取得
   const buttonContainer = document.getElementById("button-container");
   
-  // MP3ファイルごとにボタンを生成
-  mp3Files.forEach(fileName => {
+  // セリフごとにボタンを生成
+  tiger.forEach(fileName => {
     // ボタンを作成
     const button = document.createElement("button");
     button.textContent = fileName.replace(".mp3", ""); // 拡張子を削除して表示
