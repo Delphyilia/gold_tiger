@@ -32,3 +32,47 @@ const tiger = [
     buttonContainer.appendChild(button);
   });
   
+
+
+
+
+// 入力処理
+
+
+
+
+  document.getElementById('audio-form').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const response = await fetch('/generate-audio', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = ''; // 前回の結果をクリア
+
+    if (response.ok) {
+      const data = await response.json();
+      const audioUrl = data.audio_url;
+
+      // 試聴用の再生ボタンを追加
+      const audioElement = document.createElement('audio');
+      audioElement.controls = true;
+      audioElement.src = audioUrl;
+
+      // ダウンロードリンクを追加
+      const downloadLink = document.createElement('a');
+      downloadLink.href = audioUrl;
+      downloadLink.download = 'generated_audio.wav';
+      downloadLink.textContent = 'ダウンロード';
+
+      resultContainer.appendChild(audioElement);
+      resultContainer.appendChild(document.createElement('br'));
+      resultContainer.appendChild(downloadLink);
+    } else {
+      const errorData = await response.json();
+      resultContainer.textContent = `エラー: ${errorData.error}`;
+    }
+  });
