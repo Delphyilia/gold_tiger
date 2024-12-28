@@ -24,7 +24,7 @@ const tiger = [
     // クリックイベントを設定
     button.addEventListener("click", () => {
       // 音声を再生
-      const audio = new Audio(`templates/source/wav_source/${fileName}`);
+      const audio = new Audio(`static/wav_source/${fileName}`);
       audio.play();
     });
   
