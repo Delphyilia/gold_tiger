@@ -2,10 +2,10 @@ from flask import Flask, request, jsonify, render_template
 from pydub import AudioSegment
 import os
 
-app = Flask(__name__)
-SOURCE_DIR = "source"
+app = Flask(__name__,static_folder="./static/")
+SOURCE_DIR = "char_source"
 OUTPUT_FILE = "output.wav"
-OUTPUT_DIR = "static"
+OUTPUT_DIR = "output"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)  # 出力ディレクトリを確実に作成
 
@@ -37,3 +37,5 @@ def generate_audio():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    print(app.url_map)
+    print("aaaaaaaaaaaaa")

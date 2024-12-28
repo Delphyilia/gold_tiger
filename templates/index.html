@@ -5,13 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gold Tiger</title>
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="{{ url_for('static',filename='/style.css')}}">
 </head>
 
-<body>
+<body background="{{ url_for('static',filename='/background.jpg')}}">
   <div class="main_content">
     <h1>Gold Tiger</h1>
-    <img src="../source/goldtiger.png">
+    <img src="{{ url_for('static',filename='/goldtiger.png')}}">
   </div>
 
   <div id="button-container"></div>
@@ -26,6 +26,7 @@
     <div id="result-container" style="margin-top: 20px;"></div>
   </div>
 
+  <!--
   <script>
     document.getElementById('audio-form').addEventListener('submit', async function (event) {
       event.preventDefault();
@@ -62,8 +63,8 @@
         resultContainer.textContent = `エラー: ${errorData.error}`;
       }
     });
-  </script>
-    <script src="script.js"></script>
+  </script>-->
+    <script src="./source/script.js"></script>
 </body>
 
 </html>
