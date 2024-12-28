@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Tiger</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="main_content">
+    <h1>Gold Tiger</h1>
+    <form id="audio-form">
+      <label for="text-input">ひらがなを入力してください:</label>
+      <input type="text" id="text-input" name="text" required>
+      <button type="submit">音声を生成</button>
+    </form>
+    <div id="result-container" style="margin-top: 20px;"></div>
+  </div>
+
+  <script>
+    document.getElementById('audio-form').addEventListener('submit', async function (event) {
+      event.preventDefault();
+
+      const formData = new FormData(this);
+      const response = await fetch('/generate-audio', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const resultContainer = document.getElementById('result-container');
+      resultContainer.innerHTML = ''; // 前回の結果をクリア
+
+      if (response.ok) {
+        const data = await response.json();
+        const audioUrl = data.audio_url;
+
+        // 試聴用の再生ボタンを追加
+        const audioElement = document.createElement('audio');
+        audioElement.controls = true;
+        audioElement.src = audioUrl;
+
+        // ダウンロードリンクを追加
+        const downloadLink = document.createElement('a');
+        downloadLink.href = audioUrl;
+        downloadLink.download = 'generated_audio.wav';
+        downloadLink.textContent = 'ダウンロード';
+
+        resultContainer.appendChild(audioElement);
+        resultContainer.appendChild(document.createElement('br'));
+        resultContainer.appendChild(downloadLink);
+      } else {
+        const errorData = await response.json();
+        resultContainer.textContent = `エラー: ${errorData.error}`;
+      }
+    });
+  </script>
+</body>
+
+</html>
