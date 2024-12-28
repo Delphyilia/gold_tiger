@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from pydub import AudioSegment
 import os
+import glob
 
 app = Flask(__name__)
 SOURCE_DIR = "source"
@@ -21,10 +22,14 @@ def generate_audio():
 
     audio_segments = []
     for char in text:
-        char_file = os.path.join(SOURCE_DIR, f"{char}.wav")
-        if os.path.exists(char_file):
+        # 指定された文字で始まるファイルを探す
+        matching_files = glob.glob(os.path.join(SOURCE_DIR, f"{char}_*.wav"))
+        if matching_files:
+            # 最初に見つかったファイルを使用
+            char_file = matching_files[0]
             audio_segments.append(AudioSegment.from_file(char_file))
         else:
+            # ファイルが見つからない場合のエラーハンドリング
             return jsonify({"error": f"音声ファイルが見つかりません: {char}"}), 404
 
     if audio_segments:
