@@ -38,8 +38,8 @@ def trim(input_file, base_output_name, start_time_ms, end_time_ms):
 # Settings
 input_mp3 = "./gold_tiger.mp3"
 base_output_name = "./output"
-start_ms = 2370
-end_ms = 2550
+start_ms = 3170
+end_ms = 3270
 trim(input_mp3, base_output_name, start_ms, end_ms)
 
 
@@ -60,6 +60,13 @@ trim(input_mp3, base_output_name, start_ms, end_ms)
 1730~1900 ぞ た ほ       ぞ　のあとは少しまがあく
 1900~2370               無声
 2370~2550 ほ ぞ ん
+2550~2610               「ん」　が　直前の「ほ」に吸収されてほぼ聞こえない
+2610~2710 と n う
+2710~2810 う と に
+2810~2910 に う よ
+2910~3030 よ に く
+3030~3170 く よ が
+3170~3270 が く ん
 4150~7220
 ~11900
 ~17900
