@@ -38,8 +38,8 @@ def trim(input_file, base_output_name, start_time_ms, end_time_ms):
 # Settings
 input_mp3 = "./gold_tiger.mp3"
 base_output_name = "./output"
-start_ms = 3170
-end_ms = 3270
+start_ms = 3820
+end_ms = 4238
 trim(input_mp3, base_output_name, start_ms, end_ms)
 
 
@@ -67,6 +67,12 @@ trim(input_mp3, base_output_name, start_ms, end_ms)
 2910~3030 よ に く
 3030~3170 く よ が
 3170~3270 が く ん
+3270~3380 ん が ば
+3380~3480 ば ん っ
+3480~3600 っ ば た
+3600~3710 た っ な
+3710~3820 な た n
+3820~4238 がおー
 4150~7220
 ~11900
 ~17900
